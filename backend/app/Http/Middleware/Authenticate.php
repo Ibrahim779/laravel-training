@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             if ($request->routeIs('dashboard.*')){
-                return route('dashboard.login');
+                return route('dashboard.loginForm');
             }
             return route('login');
         }

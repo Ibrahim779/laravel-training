@@ -18,7 +18,7 @@
         </li>
 
     </ul>
-
+ <a href="{{route('dashboard.logout')}}">Logout</a>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
