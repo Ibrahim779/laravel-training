@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\SetLang;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//set Lang
+Route::get('lang/{lang}', function ($lang){
+    session([
+        SetLang::LANG_KEY => $lang
+    ]);
+    return back();
+})->name('lang');
