@@ -6,7 +6,7 @@
     @include('dashboard.includes.styles')
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body dir="{{session('dir')}}" class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
     @include('dashboard.includes.nav')
