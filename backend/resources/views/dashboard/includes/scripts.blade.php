@@ -32,5 +32,8 @@
 <script src="{{asset('dashboard/assets/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dashboard/assets/dist/js/pages/dashboard.js')}}"></script>
-
+<script>
+    var rtlcss = require('rtlcss');
+    var result = rtlcss.process("body { direction:ltr; }");
+</script>
 @yield('script')
