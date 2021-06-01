@@ -32,19 +32,16 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>
-                                        {{$user->fullName}}
+                                        {{$user->full_name}}
                                     </td>
                                     <td>
-                                        <img src="/{{$user->email}}" alt="user_name">
+                                        <img style="width: 50px;height: auto" src="{{url('storages/'.$user->img)}}" alt="user_name">
                                     </td>
                                     <td>
                                         {{$user->email}}
                                     </td>
                                     <td>
                                         {{$user->phone}}
-                                    </td>
-                                    <td>
-
                                     </td>
                                     <td>
                                         <a class="float-left mr-2" href="{{route('dashboard.admins.edit', $user->id)}}">
@@ -60,7 +57,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a href="{{route('dashboard.admins.create')}}">
+                            <a href="{{route('dashboard.users.create')}}">
                                 <button type="button" class="pr-5 pl-5 btn btn-primary btn-md">Add</button>
                             </a>
                         </div>

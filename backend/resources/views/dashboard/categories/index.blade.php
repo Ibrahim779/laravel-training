@@ -37,7 +37,7 @@
                                         {{$category->name_en}}
                                     </td>
                                     <td>
-                                        <img style="width: 50px;height: auto" src="/{{$category->img}}" alt="category_img">
+                                        <img style="width: 50px;height: auto" src="/{{str_contains($category->img, 'categories')?'storage/'.$category->img:$category->img}}" alt="category_img">
                                     </td>
                                     <td>
                                         <a class="float-left mr-2" href="{{route('dashboard.categories.edit', $category->id)}}">
