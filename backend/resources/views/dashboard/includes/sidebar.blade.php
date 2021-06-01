@@ -33,6 +33,7 @@
                         </p>
                     </a>
                 </li>
+                @can('browse category')
                 <li class="nav-item">
                     <a href="{{route('dashboard.categories.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -41,6 +42,7 @@
                         </p>
                     </a>
                 </li>
+                @endcan
                 <li class="nav-item">
                     <a href="{{route('dashboard.admins.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -49,11 +51,20 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{route('dashboard.roles.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-robot"></i>
                         <p>
                             Roles
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard.users.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>
+                            Users
                         </p>
                     </a>
                 </li>

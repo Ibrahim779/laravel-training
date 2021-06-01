@@ -27,11 +27,12 @@ class RoleController extends Controller
     }
     public function edit(Role $role)
     {
-        return view('dashboard.roles.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('dashboard.roles.edit', compact('role', 'permissions'));
     }
-    public function update(Role $admin, RoleRequest $request)
+    public function update(Role $role, RoleRequest $request)
     {
-        $this->saveData($admin, $request);
+        $this->saveData($role, $request);
         return redirect()->route('dashboard.roles.index');
     }
     public function destroy(Role $role)
@@ -41,6 +42,9 @@ class RoleController extends Controller
     }
     private function saveData($role ,$request)
     {
-
+        $role->name = $request->name;
+        $role->guard_name = 'admin';
+        $role->syncPermissions($request->permissions);
+        $role->save();
     }
 }

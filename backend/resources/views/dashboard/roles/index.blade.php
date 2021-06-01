@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Categories')
+@section('title', 'Roles')
 @section('content')
     <div class="content-wrapper">
         @include('dashboard.includes.header')

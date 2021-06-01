@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Categories')
+@section('title', 'Roles')
 @section('content')
     <div class="content-wrapper">
     @include('dashboard.includes.header')
@@ -13,11 +13,11 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Category Edit</h3>
+                                <h3 class="card-title">Role Create</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('dashboard.categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('dashboard.roles.update', $role->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 @if ($errors->any())
@@ -32,27 +32,19 @@
                                 @endif
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Arabic Name</label>
-                                        <input name="name_ar" value="{{old($category->name_ar)?:$category->name_ar}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Arabic Name">
+                                        <label for="exampleInputName">Name</label>
+                                        <input value="{{old('name')??$role->name}}" name="name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Name">
                                     </div>
+                                    <label>Permissions</label>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">English Name</label>
-                                        <input  name="name_en" value="{{old($category->name_ar)?:$category->name_en}}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Arabic Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">Image</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input name="img" type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
-                                            </div>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">Upload</span>
-                                            </div>
-                                        </div>
+                                        @foreach($permissions as $permission)
+                                            <input {{in_array($permission->name, $role->permissions->pluck('name')->toArray())?'checked':''}} type="checkbox" id="permission_{{$permission->id}}" name="permissions[]" value="{{$permission->name}}">
+                                            <label for="permission_{{$permission->id}}">{{$permission->name}}</label><br>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
+
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>

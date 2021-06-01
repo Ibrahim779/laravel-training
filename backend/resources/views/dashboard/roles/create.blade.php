@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Categories')
+@section('title', 'Roles')
 @section('content')
     <div class="content-wrapper">
     @include('dashboard.includes.header')
@@ -13,7 +13,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Category Create</h3>
+                                <h3 class="card-title">Role Create</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -31,14 +31,15 @@
                                 @endif
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
-                                        <input name="name_ar" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Arabic Name">
+                                        <label for="exampleInputName">Name</label>
+                                        <input value="{{old('name')}}" name="name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Name">
                                     </div>
+                                    <label>Permissions</label>
                                     <div class="form-group">
-                                    @foreach($permissions as $permission)
-                                            <input  type="checkbox" id="permission_{{$permission->id}}" name="permission_id" value="{{$permission->id}}">
-                                        <label for="permission_{{$permission->id}}">{{$permission->name}}</label><br>
-                                    @endforeach
+                                        @foreach($permissions as $permission)
+                                            <input type="checkbox" id="permission_{{$permission->id}}" name="permissions[]" value="{{$permission->name}}">
+                                            <label for="permission_{{$permission->id}}">{{$permission->name}}</label><br>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -16,7 +18,8 @@ class AdminController extends Controller
     }
     public function create()
     {
-        return view('dashboard.admins.create');
+        $roles = Role::all();
+        return view('dashboard.admins.create', compact('roles'));
     }
     public function store(AdminRequest $request)
     {
@@ -25,12 +28,13 @@ class AdminController extends Controller
     }
     public function edit(Admin $admin)
     {
-        return view('dashboard.admins.edit', compact('admin'));
+        $roles = Role::all();
+        return view('dashboard.admins.edit', compact('admin', 'roles'));
     }
     public function update(Admin $admin, AdminRequest $request)
     {
         $this->saveData($admin, $request);
-        return redirect()->route('dashboard.admin.index');
+        return redirect()->route('dashboard.admins.index');
     }
     public function destroy(Admin $admin)
     {
@@ -39,6 +43,11 @@ class AdminController extends Controller
     }
     private function saveData($admin ,$request)
     {
-
+//        dd($request->roles);
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = $request->password?Hash::make($request->password):$admin->password;
+        $admin->syncRoles($request->roles);
+        $admin->save();
     }
 }

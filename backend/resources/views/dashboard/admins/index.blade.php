@@ -39,7 +39,7 @@
                                     <td>
                                         @if(count($admin->getRoleNames())>0)
                                             @foreach($admin->getRoleNames() as $role)
-                                            {{$role}}
+                                            {{$role}} ,
                                             @endforeach
                                           @else
                                             No Role

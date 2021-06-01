@@ -29,10 +29,10 @@ class PermissionsSeeder extends Seeder
         // gets all permissions via Gate::before rule; see AuthServiceProvide
 
         // create demo users
-        $user = Admin::factory()->create([
+        $admin = Admin::factory()->create([
             'name' => 'Super-Admin',
             'email' => 'superadmin@admin.com',
         ]);
-        $user->assignRole($role);
+        $admin->assignRole($role);
     }
 }
