@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +26,6 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/main', [DashboardController::class, 'index'])->name('main');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('categories', CategoryController::class);
+    Route::resource('admins', AdminController::class);
+    Route::resource('roles', RoleController::class);
 });
