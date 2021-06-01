@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,5 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('categories', CategoryController::class);
     Route::resource('admins', AdminController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 });

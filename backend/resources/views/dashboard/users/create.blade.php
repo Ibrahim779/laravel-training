@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Admins')
+@section('title', 'Users')
 @section('content')
     <div class="content-wrapper">
     @include('dashboard.includes.header')
@@ -13,11 +13,11 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Admin Create</h3>
+                                <h3 class="card-title">User Create</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('dashboard.admins.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('dashboard.users.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -31,8 +31,16 @@
                                 @endif
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputName">Name</label>
-                                        <input value="{{old('name')}}" name="name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Name">
+                                        <label for="exampleInputName">First Name</label>
+                                        <input value="{{old('first_name')}}" name="first_name" type="text" class="form-control" id="exampleInputName" placeholder="Enter First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputName">Last Name</label>
+                                        <input value="{{old('last_name')}}" name="last_name" type="text" class="form-control" id="exampleInputName" placeholder="Enter Last Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputName">Phone</label>
+                                        <input value="{{old('phone')}}" name="phone" type="text" class="form-control" id="exampleInputName" placeholder="Enter Phone">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail">Email</label>
@@ -42,12 +50,17 @@
                                         <label for="exampleInputPassword">Password</label>
                                         <input value="{{old('password')}}" name="password" type="password" class="form-control" id="exampleInputPassword" placeholder="Enter Password">
                                     </div>
-                                    <label>Role</label>
                                     <div class="form-group">
-                                        @foreach($roles as $role)
-                                            <input type="checkbox" id="role_{{$role->id}}" name="roles[]" value="{{$role->name}}">
-                                            <label for="role_{{$role->id}}">{{$role->name}}</label><br>
-                                        @endforeach
+                                        <label for="exampleInputFile">Image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input name="img" type="file" class="custom-file-input" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
