@@ -42,8 +42,11 @@
                 </form>
             </div>
         </li>
-        <a class="dropdown-item" href="{{route('lang', 'ar')}}">العربية</a>
+        @if(app()->getLocale()=='en')
+        <a class="dropdown-item" href="{{route('lang', 'ar')}}">Arabic</a>
+        @else
         <a class="dropdown-item" href="{{route('lang', 'en')}}">English</a>
+        @endif
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
