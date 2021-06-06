@@ -2,13 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
 use App\Models\News;
-use Database\Factories\AdminFactory;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class AdminSeeder extends Seeder
+class NewsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,6 +14,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::factory()->has(News::factory()->count(3))->create();
+        News::factory()->count(10)->create();
     }
 }

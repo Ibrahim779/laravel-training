@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\NewsController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +25,11 @@ Route::middleware('guest:admin')->group(function (){
     Route::post('login', [AuthController::class, 'login'])->name('login');
 });
 Route::middleware('auth:admin')->group(function (){
-    Route::get('/main', [DashboardController::class, 'index'])->name('main');
+    Route::get('/', [DashboardController::class, 'index'])->name('main');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('categories', CategoryController::class);
     Route::resource('admins', AdminController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::resource('news', NewsController::class);
 });

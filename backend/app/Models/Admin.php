@@ -12,4 +12,9 @@ class Admin extends Authenticatable
     use HasFactory, HasRoles;
     protected $guarded = [];
     protected $guard = 'admin';
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }
