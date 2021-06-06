@@ -40,6 +40,8 @@ class GeneratePermissions
            $arr = explode('Models/',$model);
            return strtolower(end($arr));
         }, $models);
+        $arr = ['role'];
+        $models = array_merge($models, $arr);
         return $models;
     }
 }
