@@ -177,6 +177,8 @@ return [
 
         // ...Permissions
         Spatie\Permission\PermissionServiceProvider::class,
+        //.. Repository
+        \App\Providers\RepositoryServiceProvider::class,
 
     ],
 
