@@ -26,6 +26,7 @@ class PermissionsSeeder extends Seeder
         GeneratePermissions::generatePermissions();
 
         $role = Role::create(['name' => 'super-admin', 'guard_name' => 'admin']);
+        $role->syncPermissions(Permission::all()->pluck('name'));
         // gets all permissions via Gate::before rule; see AuthServiceProvide
 
         // create demo users
