@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('dashboard.main')}}" class="brand-link">
         <img src="{{asset('dashboard/assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Dashboard</span>
     </a>
 
     <!-- Sidebar -->
@@ -43,6 +43,7 @@
                     </a>
                 </li>
                 @endcan
+                @can('browse admin')
                 <li class="nav-item">
                     <a href="{{route('dashboard.admins.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -51,7 +52,8 @@
                         </p>
                     </a>
                 </li>
-
+                @endcan
+                @can('browse role')
                 <li class="nav-item">
                     <a href="{{route('dashboard.roles.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-robot"></i>
@@ -60,6 +62,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+                @can('browse user')
                 <li class="nav-item">
                     <a href="{{route('dashboard.users.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user-circle"></i>
@@ -68,6 +72,17 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+                @can('browse news')
+                    <li class="nav-item">
+                        <a href="{{route('dashboard.news.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>
+                                News
+                            </p>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
