@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 //set Lang
 Route::get('lang/{lang}', function ($lang){
-    session([
-        SetLang::LANG_KEY => $lang
-    ]);
+    session([SetLang::LANG_KEY => $lang]);
     return back();
 })->name('lang');
