@@ -29,37 +29,56 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $user)
-                                <tr>
+                                <tr id="userRow_{{$user->id}}">
                                     <td>{{$loop->iteration}}</td>
-                                    <td>
+                                    <td id="editName">
                                         {{$user->full_name}}
                                     </td>
                                     <td>
-                                        <img style="width: 50px;height: auto" src="{{url('storages/'.$user->img)}}" alt="user_name">
+                                        <img id="editImage" style="width: 50px;height: auto" src="{{url('storage/'.$user->img)}}" alt="user_name">
                                     </td>
-                                    <td>
+                                    <td id="editEmail">
                                         {{$user->email}}
                                     </td>
-                                    <td>
+                                    <td id="editPhone">
                                         {{$user->phone}}
                                     </td>
                                     <td>
-                                        <a class="float-left mr-2" href="{{route('dashboard.admins.edit', $user->id)}}">
-                                            <button type="button" class="btn btn-primary btn-sm">edit</button>
-                                        </a>
-                                        <form method="post"  action="{{route('dashboard.admins.destroy', $user)}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">delete</button>
-                                        </form>
+                                        <button userId="{{$user->id}}"  type="button" class="editUser btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal"
+                                                data-whatever="@getbootstrap">edit
+                                        </button>
+                                        <button userId="{{$user->id}}" type="submit" class="deleteUser btn btn-danger btn-sm">delete</button>
                                     </td>
                                 </tr>
-                                    @endforeach
+                                @endforeach
+                                <tr id="newUserRow" style="display: none">
+                                    <td>{{count($users)+1}}</td>
+                                    <td id="name">
+                                    </td>
+                                    <td>
+                                        <img id="img" style="width: 50px;height: auto" src="" alt="user_name">
+                                    </td>
+                                    <td id="email">
+
+                                    </td>
+                                    <td id="phone">
+                                    </td>
+                                    <td>
+                                        <button id="edit" userId="" type="button" class="editUser btn btn-primary btn-sm" data-toggle="modal"
+                                                 data-target="#editModal"
+                                                data-whatever="">edit
+                                        </button>
+                                        <button id="delete" userId="" type="submit" class="deleteUser btn btn-danger btn-sm">delete</button>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
-                            <a href="{{route('dashboard.users.create')}}">
-                                <button type="button" class="pr-5 pl-5 btn btn-primary btn-md">Add</button>
-                            </a>
+
+{{--                                <button id="addUser" type="button" class="pr-5 pl-5 btn btn-primary btn-md mt-3">Add</button>--}}
+                            <button id="addUser" type="button" class="pr-5 pl-5 btn btn-primary btn-md mt-3" data-toggle="modal" data-target="#exampleModal"
+                                    data-whatever="@getbootstrap">Add
+                            </button>
+
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -71,5 +90,11 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+      <!-- Form content -->
+     @include('dashboard.users.parts.addForm')
+     @include('dashboard.users.parts.editForm')
     </div>
-    @endsection
+@endsection
+@section('script')
+    @include('dashboard.users.parts.script')
+@endsection
