@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\App;
 class SetLang
 {
     public const LANG_KEY = 'lang';
-    private const DEFAULT_LANG = 'ar';
     /**
      * Handle an incoming request.
      *
@@ -19,14 +18,17 @@ class SetLang
      */
     public function handle(Request $request, Closure $next)
     {
-        App::setLocale(session(self::LANG_KEY));
-        if (session(self::LANG_KEY)){
-            if (session(self::LANG_KEY) == self::DEFAULT_LANG)
+        if (session(self::LANG_KEY)) {
+            App::setLocale(session(self::LANG_KEY));
+            if (session(self::LANG_KEY) == 'ar')
                 session(['dir' => 'rtl']);
             else
                 session(['dir' => 'ltr']);
-        }else{
-            session(['dir' => 'rtl']);
+        }else {
+            if (App::getLocale() == 'ar')
+                session(['dir' => 'rtl']);
+            else
+                session(['dir' => 'ltr']);
         }
         return $next($request);
     }
