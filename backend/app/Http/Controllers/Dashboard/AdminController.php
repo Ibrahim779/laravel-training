@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminRequest;
 use App\Models\Admin;
+use App\Traits\SaveData\AdminSaveData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    use AdminSaveData;
     public function index()
     {
         $admins = Admin::all();
@@ -41,13 +43,5 @@ class AdminController extends Controller
         $admin->delete();
         return back();
     }
-    private function saveData($admin ,$request)
-    {
-//        dd($request->roles);
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->password = $request->password?Hash::make($request->password):$admin->password;
-        $admin->syncRoles($request->roles);
-        $admin->save();
-    }
+
 }

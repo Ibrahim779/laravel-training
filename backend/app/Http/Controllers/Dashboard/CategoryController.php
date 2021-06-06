@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CategoryRequest;
 use App\Models\Category;
+use App\Traits\SaveData\CategorySaveData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+    use CategorySaveData;
+
     public function index()
     {
         $categories = Category::all();
@@ -34,20 +38,9 @@ class CategoryController extends Controller
     }
     public function destroy(Category $category)
     {
+        Storage::disk('public')->delete($category->img);
         $category->delete();
         return back();
     }
-    private function saveData($category ,$request)
-    {
-        $category->name_ar = $request->name_ar;
-        $category->name_en = $request->name_en;
-        if ($category->img){
-            if ($request->img){
-                $category->img = $request->img->store('categories','public');
-            }
-        }else{
-            $category->img = $request->img->store('categories','public');
-        }
-        $category->save();
-    }
+
 }

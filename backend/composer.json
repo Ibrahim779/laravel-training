@@ -29,6 +29,9 @@
         },
         "files" : [
             "app/Helpers/helpers.php"
+        ],
+        "classmap": [
+            "app/traits"
         ]
     },
     "autoload-dev": {

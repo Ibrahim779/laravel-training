@@ -5,80 +5,47 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Traits\SaveData\UserSaveData;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use UserSaveData;
+
     public function index()
     {
         $users = User::all();
         return view('dashboard.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('dashboard.users.create');
     }
 
-    /**
-     * Store a newly created resource in storage
-     * @param UserRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(UserRequest $request)
     {
-        $this->saveDate(new User, $request);
-        return redirect()->route('dashboard.users.index');
+        $user = new User;
+        $this->saveDate($user, $request);
+        return response()->json(['user' => $user, 'status' => 'success']);
     }
 
     public function edit(User $user)
     {
-        return view('dashboard.users.edit', compact('user'));
+        return response()->json(['user' => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param User $user
-     * @param UserRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(User $user, UserRequest $request)
     {
         $this->saveDate($user, $request);
-        return redirect()->route('dashboard.users.index');
+        return response()->json(['user' => $user, 'status' => 'success']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy(User $user)
     {
+        Storage::disk('public')->delete($user->img);
         $user->delete();
-        return back();
+        return response()->json(['user' => $user, 'status' => 'success']);
     }
-    protected function saveDate($user, $request)
-    {
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->password = $request->password?Hash::make($request->password):$user->password;
-        if ($user->img){
-            if ($request->img){
-                $user->img = $request->img->store('users','public');
-            }
-        }else{
-            $user->img = $request->img->store('users','public');
-        }
-        $user->save();
-    }
+
 }

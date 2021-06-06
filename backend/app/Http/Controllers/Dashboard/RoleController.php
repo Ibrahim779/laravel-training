@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\RoleRequest;
+use App\Traits\SaveData\RoleSaveData;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    use RoleSaveData;
     public function index()
     {
         $roles = Role::all();
@@ -40,11 +42,5 @@ class RoleController extends Controller
         $role->delete();
         return back();
     }
-    private function saveData($role ,$request)
-    {
-        $role->name = $request->name;
-        $role->guard_name = 'admin';
-        $role->syncPermissions($request->permissions);
-        $role->save();
-    }
+
 }
