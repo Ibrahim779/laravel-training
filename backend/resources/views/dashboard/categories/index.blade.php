@@ -20,8 +20,12 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name Arabic</th>
-                                    <th>Name English</th>
+
+                                    @if(app()->getLocale() == 'ar')
+                                        <th>Name Arabic</th>
+                                    @else
+                                        <th>Name English</th>
+                                    @endif
                                     <th>Image</th>
                                     <th>Control</th>
                                 </tr>
@@ -31,10 +35,11 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>
-                                        {{$category->name_ar}}
-                                    </td>
-                                    <td>
-                                        {{$category->name_en}}
+                                        @if(app()->getLocale() == 'ar')
+                                            {{$category->name_ar}}
+                                        @else
+                                            {{$category->name_en}}
+                                        @endif
                                     </td>
                                     <td>
                                         <img style="width: 50px;height: auto" src="/{{str_contains($category->img, 'categories')?'storage/'.$category->img:$category->img}}" alt="category_img">
