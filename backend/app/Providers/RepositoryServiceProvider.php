@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
-use App\Repository\News\NewsRepository;
-use App\Repository\News\NewsRepositoryInterface;
+
+use App\Repositories\BaseRepository;
+use App\Repositories\BaseRepositoryInterface;
+use App\Repositories\News\NewsRepository;
+use App\Repositories\News\NewsRepositoryInterface;
+use App\Repositories\Product\ProductRepository;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -26,5 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(NewsRepositoryInterface::class, NewsRepository::class);
+        $this->app->bind(BaseRepositoryInterface::class, BaseRepository::class);
+        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 }
