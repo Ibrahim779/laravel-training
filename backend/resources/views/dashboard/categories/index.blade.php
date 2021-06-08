@@ -2,7 +2,7 @@
 @section('title', 'Categories')
 @section('content')
     <div class="content-wrapper">
-        @include('dashboard.includes.header')
+        @include('dashboard.includes.header', ['title' => 'Categories'])
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -20,12 +20,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-
-                                    @if(app()->getLocale() == 'ar')
-                                        <th>Name Arabic</th>
-                                    @else
-                                        <th>Name English</th>
-                                    @endif
+                                    <th>Name</th>
                                     <th>Image</th>
                                     <th>Control</th>
                                 </tr>
@@ -35,14 +30,10 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>
-                                        @if(app()->getLocale() == 'ar')
-                                            {{$category->name_ar}}
-                                        @else
-                                            {{$category->name_en}}
-                                        @endif
+                                        {{$category->name}}
                                     </td>
                                     <td>
-                                        <img style="width: 50px;height: auto" src="/{{str_contains($category->img, 'categories')?'storage/'.$category->img:$category->img}}" alt="category_img">
+                                        <img style="width: 50px;height: auto" src="{{$category->image}}" alt="category_img">
                                     </td>
                                     <td>
                                         <a class="float-left mr-2" href="{{route('dashboard.categories.edit', $category->id)}}">

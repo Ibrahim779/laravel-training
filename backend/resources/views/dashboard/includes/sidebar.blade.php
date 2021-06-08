@@ -25,8 +25,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+
                 <li class="nav-item menu-open">
-                    <a href="{{route('dashboard.main')}}" class="nav-link active">
+                    <a href="{{route('dashboard.main')}}"
+                       class="nav-link {{request()->url() == route('dashboard.main')?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -35,7 +37,8 @@
                 </li>
                 @can('browse category')
                 <li class="nav-item">
-                    <a href="{{route('dashboard.categories.index')}}" class="nav-link">
+                    <a href="{{route('dashboard.categories.index')}}"
+                       class="nav-link {{request()->url() == route('dashboard.categories.index')?'active':''}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Category
@@ -45,7 +48,8 @@
                 @endcan
                 @can('browse admin')
                 <li class="nav-item">
-                    <a href="{{route('dashboard.admins.index')}}" class="nav-link">
+                    <a href="{{route('dashboard.admins.index')}}"
+                       class="nav-link {{request()->url() == route('dashboard.admins.index')?'active':''}}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Admins
@@ -55,7 +59,8 @@
                 @endcan
                 @can('browse role')
                 <li class="nav-item">
-                    <a href="{{route('dashboard.roles.index')}}" class="nav-link">
+                    <a href="{{route('dashboard.roles.index')}}"
+                       class="nav-link {{request()->url() == route('dashboard.roles.index')?'active':''}}">
                         <i class="nav-icon fas fa-robot"></i>
                         <p>
                             Roles
@@ -65,7 +70,8 @@
                 @endcan
                 @can('browse user')
                 <li class="nav-item">
-                    <a href="{{route('dashboard.users.index')}}" class="nav-link">
+                    <a href="{{route('dashboard.users.index')}}"
+                       class="nav-link {{request()->url() == route('dashboard.users.index')?'active':''}}">
                         <i class="nav-icon fas fa-user-circle"></i>
                         <p>
                             Users
@@ -75,10 +81,22 @@
                 @endcan
                 @can('browse news')
                     <li class="nav-item">
-                        <a href="{{route('dashboard.news.index')}}" class="nav-link">
+                        <a href="{{route('dashboard.news.index')}}"
+                           class="nav-link {{request()->url() == route('dashboard.news.index')?'active':''}}">
                             <i class="nav-icon fas fa-newspaper"></i>
                             <p>
                                 News
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can('browse product')
+                    <li class="nav-item">
+                        <a href="{{route('dashboard.products.index')}}"
+                           class="nav-link {{request()->url() == route('dashboard.products.index')?'active':''}}">
+                            <i class="nav-icon fas fa-box"></i>
+                            <p>
+                                Products
                             </p>
                         </a>
                     </li>
@@ -89,3 +107,17 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+@section('script')
+    <script>
+        $('li > a').click(function(){
+            // If this isn't already active
+            if (!$(this).hasClass("active")) {
+                // Remove the class from anything that is active
+                $("li>a.active").removeClass("active");
+                // And make this active
+                $(this).addClass("active");
+            }
+        });
+    </script>
+
+@endsection

@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
-@section('title', 'Categories')
+@section('title', 'News')
 @section('content')
     <div class="content-wrapper">
-    @include('dashboard.includes.header')
+    @include('dashboard.includes.header', ['title' => 'News'])
     <!-- Main content -->
         <!-- Main content -->
         <section class="content">
@@ -13,11 +13,11 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Category Edit</h3>
+                                <h3 class="card-title">News Edit</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('dashboard.categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('dashboard.news.update', $news->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 @if ($errors->any())
@@ -32,12 +32,24 @@
                                 @endif
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Arabic Name</label>
-                                        <input name="name_ar" value="{{old($category->name_ar)??$category->name_ar}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Arabic Name">
+                                        <label for="exampleInputTitle">Arabic Title</label>
+                                        <input name="title_ar" value="{{attrValue('title_ar', $news)}}" type="text" class="form-control" id="exampleInputTitle" placeholder="Enter Arabic Title">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">English Name</label>
-                                        <input  name="name_en" value="{{old($category->name_ar)??$category->name_en}}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Arabic Name">
+                                        <label for="exampleInputTitle1">English Title</label>
+                                        <input  name="title_en" value="{{attrValue('title_en', $news)}}" type="text" class="form-control" id="exampleInputTitle1" placeholder="Enter English Title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputDescription">Arabic Description</label>
+                                        <textarea name="description_ar"
+                                                  class="form-control"
+                                                  id="exampleInputDescription">{{attrValue('description_ar', $news)}}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputDescription1">English Description</label>
+                                        <textarea  name="description_en"
+                                                   class="form-control"
+                                                   id="exampleInputDescription1">{{attrValue('description_en', $news)}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputFile">Image</label>
@@ -53,6 +65,7 @@
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
+
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>

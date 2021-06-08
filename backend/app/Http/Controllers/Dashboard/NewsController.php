@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\NewsRequest;
 use App\Models\News;
-use App\Repository\News\NewsRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Repositories\News\NewsRepositoryInterface;
 
 class NewsController extends Controller
 {
@@ -25,31 +24,29 @@ class NewsController extends Controller
 
     public function create()
     {
-        //
+        return view('dashboard.news.create');
     }
 
     public function store(NewsRequest $request)
     {
-        //
-    }
-
-    public function show(News $news)
-    {
-        //
+        $this->newsRepository->store(new News ,$request);
+        return redirect()->route('dashboard.news.index');
     }
 
     public function edit(News $news)
     {
-        //
+        return view('dashboard.news.edit', compact('news'));
     }
 
     public function update(NewsRequest $request, News $news)
     {
-        //
+        $this->newsRepository->update($news, $request);
+        return redirect()->route('dashboard.news.index');
     }
 
     public function destroy(News $news)
     {
-        //
+        $this->newsRepository->delete($news);
+        return back();
     }
 }

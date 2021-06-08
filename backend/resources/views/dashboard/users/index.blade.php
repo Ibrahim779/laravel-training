@@ -2,7 +2,7 @@
 @section('title', 'Users')
 @section('content')
     <div class="content-wrapper">
-        @include('dashboard.includes.header')
+        @include('dashboard.includes.header', ['title' => 'Users'])
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -35,7 +35,7 @@
                                         {{$user->full_name}}
                                     </td>
                                     <td>
-                                        <img id="editImage" style="width: 50px;height: auto" src="{{url('storage/'.$user->img)}}" alt="user_name">
+                                        <img id="editImage" style="width: 50px;height: auto" src="{{$user->image}}" alt="user_name">
                                     </td>
                                     <td id="editEmail">
                                         {{$user->email}}

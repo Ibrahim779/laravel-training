@@ -2,7 +2,7 @@
 @section('title', 'Roles')
 @section('content')
     <div class="content-wrapper">
-    @include('dashboard.includes.header')
+    @include('dashboard.includes.header', ['title' => 'Role'])
     <!-- Main content -->
         <!-- Main content -->
         <section class="content">

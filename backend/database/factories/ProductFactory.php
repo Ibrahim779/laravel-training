@@ -3,17 +3,18 @@
 namespace Database\Factories;
 
 use App\Models\Admin;
-use App\Models\News;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class NewsFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = News::class;
+    protected $model = Product::class;
 
     /**
      * Define the model's default state.
@@ -23,12 +24,14 @@ class NewsFactory extends Factory
     public function definition()
     {
         return [
-            'title_ar' => $this->faker->title,
-            'title_en' => $this->faker->title,
+            'name_ar' => $this->faker->title,
+            'name_en' => $this->faker->title,
+            'price' => $this->faker->randomFloat(10),
             'description_ar' => $this->faker->text,
             'description_en' => $this->faker->text,
-            'img'  => 'dashboard/assets/dist/img/photo1.png',
+            'category_id' => Category::factory(),
             'admin_id' => Admin::factory(),
+            'img' => 'dashboard/assets/dist/img/photo1.png'
         ];
     }
 }

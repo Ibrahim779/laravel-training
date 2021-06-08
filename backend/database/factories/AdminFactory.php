@@ -24,7 +24,7 @@ class AdminFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'email' => 'admin@admin.com',
+            'email' => $this->faker->safeEmail,
             'password' => Hash::make(12345678)
         ];
     }
