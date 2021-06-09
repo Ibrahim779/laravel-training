@@ -22,8 +22,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name_ar' => $this->faker->name(),
-            'name_en' => $this->faker->name,
+            'name_ar' => $this->faker->sentence,
+            'name_en' => $this->faker->sentence,
             'img' => 'dashboard/assets/dist/img/photo1.png'
         ];
     }

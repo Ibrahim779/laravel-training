@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name_ar');
             $table->string('name_en');
             $table->double('price')->unsigned();
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->text('description_ar')->nullable();
             $table->text('description_en')->nullable();
             $table->foreignId('category_id');
