@@ -33,5 +33,5 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('news', NewsController::class);
-    Route::resource('products', ProductController::class);
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
 });

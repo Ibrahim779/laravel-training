@@ -32,5 +32,5 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model->delete();
     }
-    abstract public function saveData($model, $request);
+    abstract protected function saveData($model, $request);
 }

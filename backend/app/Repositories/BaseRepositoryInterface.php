@@ -15,7 +15,4 @@ interface BaseRepositoryInterface
 
     public function delete($model);
 
-    public function saveData($model, $request);
-
-
 }

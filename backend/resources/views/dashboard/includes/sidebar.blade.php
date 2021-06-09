@@ -26,9 +26,9 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
-                <li class="nav-item menu-open">
+                <li class="nav-item">
                     <a href="{{route('dashboard.main')}}"
-                       class="nav-link {{request()->url() == route('dashboard.main')?'active':''}}">
+                       class="nav-link {{request()->routeIs('dashboard.main')?'active':''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -38,7 +38,7 @@
                 @can('browse category')
                 <li class="nav-item">
                     <a href="{{route('dashboard.categories.index')}}"
-                       class="nav-link {{request()->url() == route('dashboard.categories.index')?'active':''}}">
+                       class="nav-link {{request()->routeIs('dashboard.categories.index')?'active':''}}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Category
@@ -49,7 +49,7 @@
                 @can('browse admin')
                 <li class="nav-item">
                     <a href="{{route('dashboard.admins.index')}}"
-                       class="nav-link {{request()->url() == route('dashboard.admins.index')?'active':''}}">
+                       class="nav-link {{request()->routeIs('dashboard.admins.index')?'active':''}}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Admins
@@ -60,7 +60,7 @@
                 @can('browse role')
                 <li class="nav-item">
                     <a href="{{route('dashboard.roles.index')}}"
-                       class="nav-link {{request()->url() == route('dashboard.roles.index')?'active':''}}">
+                       class="nav-link {{request()->routeIs('dashboard.roles.index')?'active':''}}">
                         <i class="nav-icon fas fa-robot"></i>
                         <p>
                             Roles
@@ -71,7 +71,7 @@
                 @can('browse user')
                 <li class="nav-item">
                     <a href="{{route('dashboard.users.index')}}"
-                       class="nav-link {{request()->url() == route('dashboard.users.index')?'active':''}}">
+                       class="nav-link {{request()->routeIs('dashboard.users.index')?'active':''}}">
                         <i class="nav-icon fas fa-user-circle"></i>
                         <p>
                             Users
@@ -82,7 +82,7 @@
                 @can('browse news')
                     <li class="nav-item">
                         <a href="{{route('dashboard.news.index')}}"
-                           class="nav-link {{request()->url() == route('dashboard.news.index')?'active':''}}">
+                           class="nav-link {{request()->routeIs('dashboard.news.index')?'active':''}}">
                             <i class="nav-icon fas fa-newspaper"></i>
                             <p>
                                 News
@@ -93,7 +93,7 @@
                 @can('browse product')
                     <li class="nav-item">
                         <a href="{{route('dashboard.products.index')}}"
-                           class="nav-link {{request()->url() == route('dashboard.products.index')?'active':''}}">
+                           class="nav-link {{request()->routeIs('dashboard.products.index')?'active':''}}">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
                                 Products

@@ -16,14 +16,17 @@ class News extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+
     public function getTitleAttribute()
     {
         return (app()->getLocale() == 'ar') ? $this->title_ar : $this->title_en;
     }
+
     public function getDescriptionAttribute()
     {
        return (app()->getLocale() == 'ar') ? $this->description_ar : $this->description_en;
     }
+
     public function getImageAttribute()
     {
        return str_contains($this->img, 'news')? url('storage') .'/'. $this->img : url($this->img);

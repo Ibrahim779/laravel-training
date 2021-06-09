@@ -17,7 +17,7 @@ class NewsRepository extends BaseRepository implements NewsRepositoryInterface
         parent::__construct($news);
     }
 
-    public function saveData($news, $request)
+    protected function saveData($news, $request)
     {
         $news->title_ar = $request->title_ar;
         $news->title_en = $request->title_en;

@@ -18,24 +18,29 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('dashboard.categories.index', compact('categories'));
     }
+
     public function create()
     {
         return view('dashboard.categories.create');
     }
+
     public function store(CategoryRequest $request)
     {
         $this->saveData(new Category, $request);
         return redirect()->route('dashboard.categories.index');
     }
+
     public function edit(Category $category)
     {
         return view('dashboard.categories.edit', compact('category'));
     }
+
     public function update(Category $category, CategoryRequest $request)
     {
         $this->saveData($category, $request);
         return redirect()->route('dashboard.categories.index');
     }
+
     public function destroy(Category $category)
     {
         Storage::disk('public')->delete($category->img);

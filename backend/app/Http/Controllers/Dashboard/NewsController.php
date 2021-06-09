@@ -9,6 +9,7 @@ use App\Repositories\News\NewsRepositoryInterface;
 
 class NewsController extends Controller
 {
+
     private $newsRepository;
 
     public function __construct(NewsRepositoryInterface $newsRepository)
@@ -49,4 +50,5 @@ class NewsController extends Controller
         $this->newsRepository->delete($news);
         return back();
     }
+
 }

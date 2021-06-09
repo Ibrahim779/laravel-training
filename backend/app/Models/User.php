@@ -40,10 +40,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
     public function getImageAttribute()
     {
         return str_contains($this->img, 'users')? url('storage') .'/'. $this->img : url($this->img);

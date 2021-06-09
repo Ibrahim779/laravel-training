@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
     public function login(LoginRequest $request)
     {
         if (admin()->attempt($request->only('email', 'password'))){
@@ -15,6 +16,7 @@ class AuthController extends Controller
         }
         return back()->withErrors('email or password is not correct');
     }
+
     public function logout()
     {
         admin()->logout();
