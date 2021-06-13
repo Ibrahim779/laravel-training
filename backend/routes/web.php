@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Site\AuthController;
+use App\Http\Controllers\Site\HomeController;
 use App\Http\Middleware\SetLang;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function (){
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+Route::middleware('guest')->group(function (){
+    Route::view('login', 'site.auth.login')->name('loginForm');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::view('register', 'site.auth.register')->name('registerForm');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+});
+
 
 //set Lang
 Route::get('lang/{lang}', function ($lang){
