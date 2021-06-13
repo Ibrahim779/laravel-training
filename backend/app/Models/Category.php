@@ -26,4 +26,9 @@ class Category extends Model
         return str_contains($this->img, 'categories')? url('storage/' . $this->img) : url($this->img);
     }
 
+    public function scopeGetName($query)
+    {
+        return $query->select('id', 'name_ar', 'name_en');
+    }
+
 }

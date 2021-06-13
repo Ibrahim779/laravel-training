@@ -4,15 +4,17 @@
 namespace App\Repositories;
 
 
+use Illuminate\Database\Eloquent\Model;
+
 interface BaseRepositoryInterface
 {
 
     public function all();
 
-    public function store($model, $request);
+    public function store(Model $model, $request);
 
-    public function update($model ,$request);
+    public function update(Model $model ,$request);
 
-    public function delete($model);
+    public function delete(Model $model);
 
 }

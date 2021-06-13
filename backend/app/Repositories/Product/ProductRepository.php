@@ -15,23 +15,23 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         parent::__construct($product);
     }
 
-    protected function saveData($product, $request)
+    protected function saveData($product, $data)
     {
-        $product->name_ar = $request->name_ar;
-        $product->name_en = $request->name_en;
-        $product->price = $request->price;
-        $product->description_ar = $request->description_ar;
-        $product->description_en = $request->description_en;
-        $product->category_id = $request->category_id;
-        $product->admin_id = auth()->id();
-        if ($request->img) {
+        $product->name_ar = $data->name_ar;
+        $product->name_en = $data->name_en;
+        $product->price = $data->price;
+        $product->description_ar = $data->description_ar;
+        $product->description_en = $data->description_en;
+        $product->category_id = $data->category_id;
+        if ($data->img) {
             if ($product->img){
                 Storage::disk('public')->delete($product->img);
-                $product->img = $request->img->store('products', 'public');
+                $product->img = $data->img->store('products', 'public');
             } else {
-                $product->img = $request->img->store('products', 'public');
+                $product->img = $data->img->store('products', 'public');
             }
         }
+        $product->admin_id = auth()->id();
         $product->save();
     }
 }

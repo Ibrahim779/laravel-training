@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 
+use App\Http\Livewire\Dashboard\Product\Products;
 use App\Repositories\BaseRepository;
 use App\Repositories\BaseRepositoryInterface;
 use App\Repositories\News\NewsRepository;

@@ -1,4 +1,7 @@
+
 <div class="card-body">
+    @include('livewire.dashboard.product.create')
+    @include('livewire.dashboard.product.edit')
     <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -32,18 +35,33 @@
                 </td>
 
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editProductModal"
-                            data-whatever="@getbootstrap">edit
+                    <button wire:model="productId" wire:click="resetData({{$product->id}})" type="button"
+                            class="btn btn-primary btn-sm" data-toggle="modal"
+                            data-target="#editProductModal"
+                            data-whatever="@getbootstrap">
+                        edit
                     </button>
-                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                    <button wire:click="delete({{$product->id}})" type="submit"
+                            class="btn btn-danger btn-sm">
+                        delete
+                    </button>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <button type="button" class="pr-5 pl-5 btn btn-primary btn-md mt-3" data-toggle="modal" data-target="#addProductModal"
-            data-whatever="@getbootstrap">Add
+    <button  wire:click="removeData()" type="button" class="pr-5 pl-5 btn btn-primary btn-md mt-3"
+            data-toggle="modal" data-target="#addProductModal">
+        Add
     </button>
 </div>
-@include('livewire.dashboard.product.create')
-@include('livewire.dashboard.product.edit')
+@section('script')
+    <script>
+        window.addEventListener('addProduct', event => {
+            $('#addProductModal').modal('hide');
+        });
+        window.addEventListener('editProduct', event => {
+            $('#editProductModal').modal('hide');
+        })
+    </script>
+@endsection

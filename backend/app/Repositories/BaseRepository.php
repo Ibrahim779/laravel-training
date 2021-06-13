@@ -4,11 +4,13 @@
 namespace App\Repositories;
 
 
+use Illuminate\Database\Eloquent\Model;
+
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-    protected $model;
+    protected  $model;
 
-    public function __construct($model)
+    public function __construct(Model $model)
     {
         $this->model = $model;
     }
@@ -18,17 +20,17 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->all();
     }
 
-    public function store($model, $request)
+    public function store(Model $model, $request)
     {
         $this->saveData($model, $request);
     }
 
-    public function update($model , $request)
+    public function update(Model $model , $request)
     {
         $this->saveData($model, $request);
     }
 
-    public function delete($model)
+    public function delete(Model $model)
     {
         $model->delete();
     }

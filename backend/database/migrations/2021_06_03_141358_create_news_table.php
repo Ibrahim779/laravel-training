@@ -20,7 +20,7 @@ class CreateNewsTable extends Migration
             $table->string('img')->nullable();
             $table->text('description_ar');
             $table->text('description_en');
-            $table->foreignId('admin_id')->nullable();
+            $table->foreignId('admin_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

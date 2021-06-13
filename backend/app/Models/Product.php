@@ -33,7 +33,8 @@ class Product extends Model
 
     public function getImageAttribute()
     {
-        return str_contains($this->img, 'products')? url('storage') .'/'. $this->img : url($this->img);
+        return str_contains($this->img, 'products')? url('storage') .'/'. $this->img :
+            ($this->img?url($this->img):url('dashboard/assets/dist/img/photo1.png'));
     }
 
 }
