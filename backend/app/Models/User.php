@@ -48,6 +48,9 @@ class User extends Authenticatable
 
     public function getImageAttribute()
     {
-        return str_contains($this->img, 'users')? url('storage') .'/'. $this->img : url($this->img);
+        if ($this->img) {
+           return str_contains($this->img, 'users')? url('storage') .'/'. $this->img : url($this->img);
+        }
+        return url('dashboard/assets/dist/img/avatar5.png');
     }
 }
