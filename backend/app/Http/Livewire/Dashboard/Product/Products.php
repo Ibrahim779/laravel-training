@@ -46,7 +46,7 @@ class Products extends Component
     {
         $this->productRepository = $productRepository;
         $this->validate();
-        $this->productRepository->store(new Product, $this);
+        $this->productRepository->createOrUpdate(new Product, $this);
         $this->dispatchBrowserEvent('addProduct');
     }
 
@@ -54,7 +54,7 @@ class Products extends Component
     {
         $this->productRepository = $productRepository;
         $this->validate();
-        $this->productRepository->update(Product::find($this->productId), $this);
+        $this->productRepository->createOrUpdate(Product::find($this->productId), $this);
         $this->dispatchBrowserEvent('editProduct');
     }
 
