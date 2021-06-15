@@ -27,6 +27,16 @@ class News extends Model
        return (app()->getLocale() == 'ar') ? $this->description_ar : $this->description_en;
     }
 
+    public function getSubDescriptionAttribute()
+    {
+        return substr($this->description, 0, 150);
+    }
+
+    public function getDateAttribute()
+    {
+        return date_format($this->created_at, 'F j, Y');
+    }
+
     public function getImageAttribute()
     {
        return str_contains($this->img, 'news')? url('storage') .'/'. $this->img : url($this->img);
