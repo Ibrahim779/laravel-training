@@ -21,6 +21,11 @@ class Product extends Model
         return $this->belongsTo(Admin::class);
     }
 
+    public function wishList()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
     public function getNameAttribute()
     {
         return (app()->getLocale() == 'ar') ? $this->name_ar : $this->name_en;
