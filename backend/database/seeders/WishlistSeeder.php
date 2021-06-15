@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cart;
+use App\Models\Wishlist;
 use Illuminate\Database\Seeder;
 
-class CartSeeder extends Seeder
+class WishlistSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class CartSeeder extends Seeder
      */
     public function run()
     {
-        Cart::factory()->count(5)->create();
+        Wishlist::factory()->count(5)->create();
     }
 }

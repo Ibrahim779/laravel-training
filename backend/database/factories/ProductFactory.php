@@ -31,7 +31,7 @@ class ProductFactory extends Factory
             'description_en' => $this->faker->text,
             'category_id' => Category::factory(),
             'admin_id' => Admin::factory(),
-            'img' => 'dashboard/assets/dist/img/photo1.png'
+            'img' => 'site/assets/images/banner-01.jpg'
         ];
     }
 }
