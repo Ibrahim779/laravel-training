@@ -20,12 +20,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->all();
     }
 
-    public function store(Model $model, $request)
-    {
-        $this->saveData($model, $request);
-    }
-
-    public function update(Model $model , $request)
+    public function createOrUpdate(Model $model , $request)
     {
         $this->saveData($model, $request);
     }
