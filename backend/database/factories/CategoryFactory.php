@@ -24,7 +24,7 @@ class CategoryFactory extends Factory
         return [
             'name_ar' => $this->faker->title,
             'name_en' => $this->faker->title,
-            'img' => 'dashboard/assets/dist/img/photo1.png'
+            'img' => 'site/assets/images/gallery-01.jpg'
         ];
     }
 }
