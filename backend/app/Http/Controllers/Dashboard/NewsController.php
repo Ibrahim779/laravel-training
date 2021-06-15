@@ -30,7 +30,7 @@ class NewsController extends Controller
 
     public function store(NewsRequest $request)
     {
-        $this->newsRepository->store(new News ,$request);
+        $this->newsRepository->createOrUpdate(new News ,$request);
         return redirect()->route('dashboard.news.index');
     }
 
@@ -41,7 +41,7 @@ class NewsController extends Controller
 
     public function update(NewsRequest $request, News $news)
     {
-        $this->newsRepository->update($news, $request);
+        $this->newsRepository->createOrUpdate($news, $request);
         return redirect()->route('dashboard.news.index');
     }
 
