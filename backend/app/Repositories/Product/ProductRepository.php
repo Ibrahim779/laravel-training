@@ -4,15 +4,32 @@
 namespace App\Repositories\Product;
 
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Storage;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
+    const PAGINATION = 9;
     public function __construct(Product $product)
     {
         parent::__construct($product);
+    }
+
+    public function getWithPagination()
+    {
+        return Product::paginate(self::PAGINATION);
+    }
+
+    public function getCategoryProducts($category)
+    {
+        return Product::whereCategoryId($category)->paginate(self::PAGINATION);
+    }
+
+    public function getRelatedProducts($product)
+    {
+        return Product::whereCategoryId($product->category_id)->inRandomOrder()->get();
     }
 
     protected function saveData($product, $data)
