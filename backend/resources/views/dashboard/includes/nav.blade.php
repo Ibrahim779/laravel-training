@@ -35,10 +35,10 @@
             </div>
         </li>
         <li class="nav-item">
-            @if(app()->getLocale()=='en')
-                <a class="nav-link" href="{{route('site.lang', 'ar')}}" role="button">ar</a>
-            @else
+            @if(app()->getLocale()=='ar')
                 <a class="nav-link" href="{{route('site.lang', 'en')}}" role="button">en</a>
+            @else
+                <a class="nav-link" href="{{route('site.lang', 'ar')}}" role="button">ar</a>
             @endif
         </li>
         <li class="nav-item">

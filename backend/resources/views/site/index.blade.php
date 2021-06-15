@@ -8,4 +8,6 @@
 
     @include('site.parts.products')
 
+    @include('site.parts.news')
+
 @endsection

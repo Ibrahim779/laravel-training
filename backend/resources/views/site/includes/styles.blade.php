@@ -28,3 +28,4 @@
 <link rel="stylesheet" type="text/css" href="{{asset('site/assets/css/util.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('site/assets/css/main.css')}}">
 <!--===============================================================================================-->
+@yield('style')

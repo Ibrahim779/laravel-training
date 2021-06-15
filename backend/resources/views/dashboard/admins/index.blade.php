@@ -37,14 +37,11 @@
                                         {{$admin->email}}
                                     </td>
                                     <td>
-                                        @if(count($admin->getRoleNames())>0)
-                                            @foreach($admin->getRoleNames() as $role)
+                                        @forelse($admin->getRoleNames() as $role)
                                             {{$role}} ,
-                                            @endforeach
-                                          @else
+                                        @empty
                                             No Role
-                                        @endif
-
+                                        @endforelse
                                     </td>
                                     <td>
                                         <a class="float-left mr-2" href="{{route('dashboard.admins.edit', $admin->id)}}">

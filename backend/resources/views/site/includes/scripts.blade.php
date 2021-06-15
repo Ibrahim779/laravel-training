@@ -28,15 +28,40 @@
 <script type="text/javascript" src="{{asset('site/assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script type="text/javascript">
     $('.block2-btn-addcart').each(function(){
-        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(){
+        let nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+               type : 'post',
+               url : "{{route('site.cart.store')}}",
+               data : {
+                   "_token": "{{ csrf_token() }}",
+                   'productId' : $(this).attr('productId')
+               },
+               success : function (data) {
+                    $('.cartCount').html(data.cartCount);
+                }
+            });
             swal(nameProduct, "is added to cart !", "success");
         });
     });
 
     $('.block2-btn-addwishlist').each(function(){
-        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(){
+        let nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                type : 'post',
+                url : "{{route('site.wishList.store')}}",
+                data : {
+                    "_token": "{{ csrf_token() }}",
+                    'productId' : $(this).attr('productId')
+                },
+                success : function (data) {
+                    console.log(data);
+                    $('.cartCount').html(data.cartCount);
+                }
+            });
             swal(nameProduct, "is added to wishlist !", "success");
         });
     });
@@ -49,3 +74,5 @@
 </script>
 <!--===============================================================================================-->
 <script src="{{asset('site/assets/js/main.js')}}"></script>
+
+@yield('script')
