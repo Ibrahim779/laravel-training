@@ -27,7 +27,7 @@ class NewsFactory extends Factory
             'title_en' => $this->faker->title,
             'description_ar' => $this->faker->text,
             'description_en' => $this->faker->text,
-            'img'  => 'dashboard/assets/dist/img/photo1.png',
+            'img'  => 'site/assets/images/blog-01.jpg',
             'admin_id' => Admin::factory(),
         ];
     }
