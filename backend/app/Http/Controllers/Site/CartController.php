@@ -24,6 +24,12 @@ class CartController extends Controller
         return response()->json(['cartCount' => Cart::userCart()->count()]);
     }
 
+    public function destroy(Cart $cart)
+    {
+        $cart->delete();
+        return response()->json(['cartCount' => Cart::userCart()->count()]);
+    }
+
     public function saveData(Cart $cart, $productId)
     {
         $cart->product_id = $productId;

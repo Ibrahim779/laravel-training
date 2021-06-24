@@ -32,6 +32,11 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return Product::whereCategoryId($product->category_id)->inRandomOrder()->get();
     }
 
+    public function search($keyword)
+    {
+        return Product::search($keyword)->paginate(self::PAGINATION);
+    }
+
     protected function saveData($product, $data)
     {
         $product->name_ar = $data->name_ar;
@@ -51,4 +56,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $product->admin_id = auth()->id();
         $product->save();
     }
+
+
 }

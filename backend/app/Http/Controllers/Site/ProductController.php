@@ -37,4 +37,12 @@ class ProductController extends Controller
         return view('site.products.index', compact('products', 'categories'));
     }
 
+    public function search($keyword)
+    {
+        $products = $this->productRepository->search($keyword);
+        $categories = Category::getName()->get();
+        return view('site.products.index', compact('products', 'categories'));
+
+    }
+
 }

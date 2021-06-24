@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Document;
+use Database\Factories\FieldFactory;
+use Database\Factories\FormFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +24,9 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             CartSeeder::class,
             WishlistSeeder::class,
+            FieldSeeder::class,
+            FormSeeder::class,
+            DocumentSeeder::class,
         ]);
 
     }

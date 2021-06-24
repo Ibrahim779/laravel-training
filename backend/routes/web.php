@@ -31,7 +31,7 @@ Route::resource('about', AboutController::class)->only('index');
 Route::resource('contact', ContactController::class)->only('index');
 
 Route::middleware('auth')->group(function (){
-    Route::resource('cart', CartController::class)->only('index', 'store');
+    Route::resource('cart', CartController::class)->only('index', 'store', 'destroy');
     Route::resource('wishList', WishlistController::class)->only('index', 'store');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

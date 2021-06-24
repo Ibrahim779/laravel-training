@@ -15,4 +15,6 @@ interface ProductRepositoryInterface extends BaseRepositoryInterface
     public function getWithPagination();
 
     public function getRelatedProducts($product);
+
+    public function search($keyword);
 }

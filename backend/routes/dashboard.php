@@ -4,6 +4,8 @@ use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DocumentController;
+use App\Http\Controllers\Dashboard\FormController;
 use App\Http\Controllers\Dashboard\NewsController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\RoleController;
@@ -33,5 +35,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('roles', RoleController::class)->except('show');
     Route::resource('users', UserController::class)->except('show');
     Route::resource('news', NewsController::class)->except('show');
+    Route::resource('forms', FormController::class)->except('show');
+    Route::get('forms/{form}/export', [FormController::class, 'export'])->name('forms.export');
+    Route::post('forms/import', [FormController::class, 'import'])->name('forms.import');
+    Route::resource('documents', DocumentController::class)->except('show');
     Route::get('products', [ProductController::class, 'index'])->name('products.index');
 });

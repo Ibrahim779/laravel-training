@@ -1,5 +1,5 @@
 <a href="#" class="header-wrapicon1 dis-block">
-    <img style="border-radius: 20px" src="{{auth()->user()->image}}" class="header-icon1" alt="ICON">
+    <img style="border-radius: 20px" src="{{auth()->user()->image??asset('site/assets/images/icons/icon-header-01.png')}}" class="header-icon1" alt="ICON">
 </a>
 
 <span class="linedivide2"></span>

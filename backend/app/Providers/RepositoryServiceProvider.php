@@ -31,6 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // you can get name of repository and concrete interface
         $this->app->bind(NewsRepositoryInterface::class, NewsRepository::class);
         $this->app->bind(BaseRepositoryInterface::class, BaseRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);

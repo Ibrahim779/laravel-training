@@ -42,4 +42,13 @@ class Product extends Model
             ($this->img?url($this->img):url('dashboard/assets/dist/img/photo1.png'));
     }
 
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('name_ar', '%LIKE%', $keyword)
+            ->orWhere('name_en', '%LIKE%', $keyword)
+            ->orWhere('price', '%LIKE%', $keyword)
+            ->orWhere('description_ar', '%LIKE%', $keyword)
+            ->orWhere('description_en', '%LIKE%', $keyword);
+    }
+
 }

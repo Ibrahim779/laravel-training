@@ -26,47 +26,7 @@
 <script type="text/javascript" src="{{asset('site/assets/vendor/lightbox2/js/lightbox.min.js')}}"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="{{asset('site/assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
-<script type="text/javascript">
-    $('.block2-btn-addcart').each(function(){
-        let nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-               type : 'post',
-               url : "{{route('site.cart.store')}}",
-               data : {
-                   "_token": "{{ csrf_token() }}",
-                   'productId' : $(this).attr('productId')
-               },
-               success : function (data) {
-                    $('.cartCount').html(data.cartCount);
-                }
-            });
-            swal(nameProduct, "is added to cart !", "success");
-        });
-    });
-
-    $('.block2-btn-addwishlist').each(function(){
-        let nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                type : 'post',
-                url : "{{route('site.wishList.store')}}",
-                data : {
-                    "_token": "{{ csrf_token() }}",
-                    'productId' : $(this).attr('productId')
-                },
-                success : function (data) {
-                    console.log(data);
-                    $('.cartCount').html(data.cartCount);
-                }
-            });
-            swal(nameProduct, "is added to wishlist !", "success");
-        });
-    });
-</script>
-
+@include('site.includes.myScript')
 <!--===============================================================================================-->
 <script type="text/javascript" src="{{asset('site/assets/vendor/parallax100/parallax100.js')}}"></script>
 <script type="text/javascript">

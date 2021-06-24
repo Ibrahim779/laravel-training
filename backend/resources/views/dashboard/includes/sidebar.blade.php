@@ -101,6 +101,28 @@
                         </a>
                     </li>
                 @endcan
+                @can('browse form')
+                    <li class="nav-item">
+                        <a href="{{route('dashboard.forms.index')}}"
+                           class="nav-link {{request()->routeIs('dashboard.forms.index')?'active':''}}">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Forms
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @can('browse document')
+                    <li class="nav-item">
+                        <a href="{{route('dashboard.documents.index')}}"
+                           class="nav-link {{request()->routeIs('dashboard.documents.index')?'active':''}}">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>
+                                Documents
+                            </p>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

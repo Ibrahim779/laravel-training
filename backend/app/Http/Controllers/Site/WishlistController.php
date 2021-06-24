@@ -19,7 +19,12 @@ class WishlistController extends Controller
         if (!Wishlist::exist($productId)) {
             $this->saveData(new Wishlist, $productId);
         }
-        return response()->json(['cartCount' => Wishlist::userWishList()->count()]);
+        return response()->json(['status' => 'success']);
+    }
+
+    public function destroy(Wishlist $wishlist)
+    {
+        $wishlist->delete();
     }
 
     public function saveData(Wishlist $wishlist, $productId)
