@@ -181,6 +181,9 @@ return [
         //.. Repository
         \App\Providers\RepositoryServiceProvider::class,
 
+        //.. Payment
+        \App\Providers\PaymentServiceProvider::class,
+
         //Excel Package
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
