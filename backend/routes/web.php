@@ -27,7 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::resource('products', ProductController::class)->only('index', 'show');
 
-//Todo Clean Code: Create Separated Controller For Relationship
+//Todo Improve: Create Separated Controller For Relationship
 Route::get('products/categories/{category}', [ProductController::class, 'getCategoryProducts'])
     ->name('products.getCategoryProducts');
 

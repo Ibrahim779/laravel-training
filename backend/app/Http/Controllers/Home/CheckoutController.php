@@ -37,9 +37,13 @@ class CheckoutController extends Controller
 
     public function store(OrderRequest $request)
     {
-        $this->saveData(new Order, $request);
+        $order = new Order;
+
+        $this->saveData($order, $request);
 
         $this->paymentGateway->setPaymentMethodId($request->paymentMethodId);
+
+        $this->paymentGateway->setTotal($order->total_price);
 
         $response = $this->paymentGateway->execute();
 
@@ -48,7 +52,8 @@ class CheckoutController extends Controller
 
     public function success()
     {
-        return redirect()->route('site.cart.index');
+        return redirect()->route('site.cart.index')
+            ->with(['success' => 'Payment Process Is Success :)']);
     }
 
     public function cancel()

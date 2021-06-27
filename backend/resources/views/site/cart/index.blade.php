@@ -8,6 +8,16 @@
     <!-- Cart -->
     <section class="cart bgwhite p-t-70 p-b-100">
         <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">&times;</i>
+                    </button>
+                    <span>
+                        {{session('success')}}
+                    </span>
+                </div>
+            @endif
             <!-- Cart item -->
             <div class="container-table-cart pos-relative">
                 <div class="wrap-table-shopping-cart bgwhite">
