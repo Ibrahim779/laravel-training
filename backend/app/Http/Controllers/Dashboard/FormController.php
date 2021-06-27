@@ -16,24 +16,28 @@ class FormController extends Controller
     public function index()
     {
         $forms = Form::all();
+
         return view('dashboard.forms.index', compact('forms'));
     }
 
     public function edit(Form $form)
     {
         $fields = $form->fields()->get();
+
         return response()->json(['status' => 'success', 'form' => $form, 'fields' => $fields]);
     }
 
     public function store(Request $request)
     {
         $this->saveData(new Form, $request);
+
         return response()->json(['status' => 'success']);
     }
 
     public function update(Form $form, Request $request)
     {
         $this->saveData($form, $request);
+
         return response()->json(['status' => 'success', 'form' => $form]);
     }
 
@@ -58,13 +62,15 @@ class FormController extends Controller
         $form->name = $request->name;
         $form->fields()->delete();
         $form->save();
-        for ($i = 0; $i<count($request->title); $i++){
+
+        for ($i = 0; $i < count($request->title); $i++) {
             $field = new Field;
             $field->form_id = $form->id;
             $field->title = $request->title[$i];
             $field->type = $request->type[$i];
             $field->save();
         }
+
     }
 
 }

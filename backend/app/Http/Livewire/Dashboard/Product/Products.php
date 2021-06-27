@@ -14,13 +14,22 @@ class Products extends Component
     use WithFileUploads;
 
     public $productId;
+
     public $name_ar;
+
     public $name_en;
+
     public $price;
+
     public $description_ar;
+
     public $description_en;
+
     public $category_id;
+
     public $img;
+
+    private  $productRepository;
 
     protected $rules = [
         'name_ar' => 'required|min:5|max:255',
@@ -31,13 +40,12 @@ class Products extends Component
         'category_id' => 'required'
     ];
 
-    private  $productRepository;
-
     public function render(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
         $products = $this->productRepository->all();
         $categories = Category::getName()->get();
+
         return view('livewire.dashboard.product.products',
             ['products' => $products, 'categories' => $categories]);
     }

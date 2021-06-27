@@ -46,6 +46,7 @@ class DocumentController extends Controller
 
         $document->name = $request->name;
         $document->save();
+
         $document->deleteForms();
         $document->forms()->attach($request->forms);
         $document->insertFieldsValue($request);

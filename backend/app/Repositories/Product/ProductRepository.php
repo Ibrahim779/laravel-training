@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
     const PAGINATION = 9;
+
     public function __construct(Product $product)
     {
         parent::__construct($product);

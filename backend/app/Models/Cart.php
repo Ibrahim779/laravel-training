@@ -26,9 +26,14 @@ class Cart extends Model
         return $query->whereUserId(auth()->id());
     }
 
+    public function scopeOrderIsNull($query)
+    {
+        return $query->whereOrderId(null);
+    }
+
     public static function exist($productId)
     {
-        if (self::userCart()->whereProductId($productId)->first())
+        if (self::userCart()->whereOrderId(!null)->whereProductId($productId)->first())
             return true;
         return false;
     }
@@ -41,9 +46,11 @@ class Cart extends Model
     public static function getTotal()
     {
         $total = 0;
-        foreach (self::userCart()->get() as $cartItem) {
+
+        foreach (self::userCart()->OrderIsNull()->get() as $cartItem) {
             $total += $cartItem->totalPrice;
         }
+
         return $total;
     }
 }

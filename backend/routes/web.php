@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Site\AboutController;
 use App\Http\Controllers\Site\AuthController;
 use App\Http\Controllers\Site\CartController;
@@ -23,29 +24,49 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
 Route::resource('products', ProductController::class)->only('index', 'show');
+
+//Todo Clean Code: Create Separated Controller For Relationship
 Route::get('products/categories/{category}', [ProductController::class, 'getCategoryProducts'])
     ->name('products.getCategoryProducts');
+
 Route::resource('news', NewsController::class)->only('index', 'show');
+
 Route::resource('about', AboutController::class)->only('index');
+
 Route::resource('contact', ContactController::class)->only('index');
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
+
     Route::resource('cart', CartController::class)->only('index', 'store', 'destroy');
+
     Route::resource('wishList', WishlistController::class)->only('index', 'store');
+
+    Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);
+
+    Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+
+    Route::get('checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
 });
 
 Route::middleware('guest')->group(function () {
+
     Route::view('login', 'site.auth.login')->name('loginForm');
+
     Route::post('login', [AuthController::class, 'login'])->name('login');
+
     Route::view('register', 'site.auth.register')->name('registerForm');
+
     Route::post('register', [AuthController::class, 'register'])->name('register');
+
 });
 
-
 //set Lang
-Route::get('lang/{lang}', function ($lang){
+Route::get('lang/{lang}', function ($lang) {
     session([SetLang::LANG_KEY => $lang]);
     return back();
 })->name('lang');

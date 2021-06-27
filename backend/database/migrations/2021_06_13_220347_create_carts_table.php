@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->foreignId('product_id');
             $table->foreignId('user_id');
+            $table->foreignId('order_id')->nullable();
             $table->integer('count')->default(1);
             $table->timestamps();
         });

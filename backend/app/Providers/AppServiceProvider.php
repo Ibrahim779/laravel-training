@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view)
         {
-            $view->with('cartItems', Cart::userCart()->get() );
+            $view->with('cartItems', Cart::userCart()->OrderIsNull()->get() );
         });
     }
 }
