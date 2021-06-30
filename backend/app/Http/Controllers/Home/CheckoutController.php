@@ -52,12 +52,14 @@ class CheckoutController extends Controller
 
     public function success()
     {
+        //Todo:check if success
         return redirect()->route('site.cart.index')
             ->with(['success' => 'Payment Process Is Success :)']);
     }
 
     public function cancel()
     {
+        //Todo:Cancel order
         return redirect()->route('site.checkout.index')
             ->withErrors('Payment Process Is Failed');
     }
